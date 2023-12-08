@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-import com.nike.rpn.memento.MementoCaretaker;
+import com.nike.rpn.memento.MementoManager;
 import com.nike.rpn.operator.NumericOperator;
 import com.nike.rpn.operator.Operator;
 import com.nike.rpn.operator.OperatorFactory;
@@ -28,7 +28,7 @@ public class RPNCalculator {
     /**
      * manage all historic status of numsStack to perform undo actions
      */
-    private final MementoCaretaker mc = new MementoCaretaker();
+    private final MementoManager mc = new MementoManager();
 
     public void run(String commandLine) {
         int index = 0;
@@ -49,6 +49,9 @@ public class RPNCalculator {
                     System.out.println("Can not divide by zero");
                     break;
                 }
+
+
+
             } else {
                 System.out.println("Illegal token parameter:" + token);
                 break;
@@ -61,7 +64,7 @@ public class RPNCalculator {
 
     private void stack(String input) {
         stack.push(CalculatorUtil.toPlainString(input));
-        mc.createMemento(stack);
+        mc.create(stack);
     }
 
     private void operate(String input, int index) {
@@ -70,7 +73,7 @@ public class RPNCalculator {
             rangeCheck(input, index);
         }
         if (operator instanceof UndoOperator) {
-            stack = mc.getMemento().getStack();
+            stack = mc.undo().getStack();
         }
         operator.calculate(stack, mc);
     }

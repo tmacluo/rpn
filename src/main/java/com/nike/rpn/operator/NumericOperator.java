@@ -1,6 +1,6 @@
 package com.nike.rpn.operator;
 
-import com.nike.rpn.memento.MementoCaretaker;
+import com.nike.rpn.memento.MementoManager;
 
 import java.math.BigDecimal;
 import java.util.Stack;
@@ -11,9 +11,9 @@ import java.util.Stack;
 public interface NumericOperator extends Operator {
     BigDecimal calculate(BigDecimal a, BigDecimal b);
 
-    default void calculate(Stack<String> stack, MementoCaretaker mc){
+    default void calculate(Stack<String> stack, MementoManager mc){
         BigDecimal result = calculate(new BigDecimal(stack.pop()), new BigDecimal(stack.pop()));
         stack.push(result.stripTrailingZeros().toPlainString());
-        mc.createMemento(stack);
+        mc.create(stack);
     }
 }

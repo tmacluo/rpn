@@ -1,6 +1,7 @@
 package com.nike.rpn;
 
 import com.nike.rpn.core.RPNCalculator;
+import com.nike.rpn.exception.InsufficientParameterException;
 
 import java.util.Scanner;
 

@@ -7,7 +7,7 @@ import com.nike.rpn.operator.special.UndoOperator;
 
 public class OperatorFactory {
     public static Operator getOperator(String operator) {
-        switch (operator) {
+        switch (operator.toLowerCase()) {
             case "+":
                 return new AddOperator();
             case "-":

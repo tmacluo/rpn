@@ -1,11 +1,11 @@
 package com.nike.rpn.operator;
 
-import com.nike.rpn.memento.MementoCaretaker;
+import com.nike.rpn.memento.MementoManager;
 
 import java.util.Stack;
 
 public interface Operator {
 
-    void calculate(Stack<String> stack, MementoCaretaker mc);
+    void calculate(Stack<String> stack, MementoManager mc);
 
 }
