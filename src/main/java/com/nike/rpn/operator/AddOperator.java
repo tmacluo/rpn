@@ -1,10 +1,13 @@
 package com.nike.rpn.operator;
 
+import com.nike.rpn.memento.MementoCaretaker;
+
 import java.math.BigDecimal;
+import java.util.Stack;
 
-public class AddOperator implements Operator {
+public class AddOperator implements NumericOperator {
 
-    public BigDecimal calc(BigDecimal a, BigDecimal b) {
+    public BigDecimal calculate(BigDecimal a, BigDecimal b) {
         return b.add(a);
     }
 

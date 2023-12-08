@@ -8,28 +8,28 @@ import java.util.*;
  * @author Tmac
  */
 public class MementoCaretaker {
-    private int i = -1; // index for current Memento
-    private final List<Memento> undoList = new ArrayList<Memento>();
+    private int currentIndex = -1; // index for current Memento
+    private final List<Memento> mementoList = new LinkedList<>();
 
     public void createMemento(Stack<String> stack) {
-        undoList.add(new Memento((Stack<String>)stack.clone()));
-        i++;
+        mementoList.add(new Memento((Stack<String>)stack.clone()));
+        currentIndex++;
     }
 
     public Memento getMemento() {
-        if (i <= -1 || undoList.isEmpty()) {
+        if (currentIndex < 0 || mementoList.isEmpty()) {
             return new Memento(new Stack<>());
         }
-        undoList.remove(i--);
-        if (i <= -1) {
+        mementoList.remove(currentIndex--);
+        if (currentIndex <= -1) {
             return new Memento(new Stack<>());
         }
-        return undoList.get(i);
+        return mementoList.get(currentIndex);
     }
 
     public void clearMemento() {
-        undoList.clear();
-        i = -1;
+        mementoList.clear();
+        currentIndex = -1;
     }
 
 }

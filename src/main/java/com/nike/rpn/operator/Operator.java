@@ -1,10 +1,11 @@
 package com.nike.rpn.operator;
 
-import java.math.BigDecimal;
+import com.nike.rpn.memento.MementoCaretaker;
 
-/**
- * Simple interface to specify calculation methods allowed by the calculator
- */
+import java.util.Stack;
+
 public interface Operator {
-	BigDecimal calc(BigDecimal a, BigDecimal b);
+
+    void calculate(Stack<String> stack, MementoCaretaker mc);
+
 }

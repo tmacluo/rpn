@@ -1,16 +1,29 @@
 package com.nike.rpn.operator;
 
-public class OperatorFactory{
-		public static Operator getOperator(String operator) {
-			if ("+".equals(operator)) {
-				return new AddOperator();
-			} else if ("-".equals(operator)) {
-				return new SubtractOperator();
-			} else if ("*".equals(operator)) {
-				return new MultiplyOperator();
-			} else if ("/".equals(operator)) {
-				return new DivideOperator();
-			}
-			return null;
-		}
+import com.nike.rpn.exception.UnsupportedOperatorException;
+import com.nike.rpn.operator.special.ClearOperator;
+import com.nike.rpn.operator.special.SqrtOperator;
+import com.nike.rpn.operator.special.UndoOperator;
+
+public class OperatorFactory {
+    public static Operator getOperator(String operator) {
+        switch (operator) {
+            case "+":
+                return new AddOperator();
+            case "-":
+                return new SubtractOperator();
+            case "*":
+                return new MultiplyOperator();
+            case "/":
+                return new DivideOperator();
+            case "clear":
+                return new ClearOperator();
+            case "undo":
+                return new UndoOperator();
+            case "sqrt":
+                return new SqrtOperator();
+            default:
+                throw new UnsupportedOperatorException();
+        }
+    }
 }

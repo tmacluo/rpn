@@ -78,7 +78,7 @@ public class RPNCalculatorTest {
 	}
 	
 	@Test
-	public void testInsufficnetParameter(){
+	public void testInsufficientParameter(){
 		String inputStr = "1 2 3 * 5 + * * 6 5";
 		Stack<String> stack = new Stack<String>();
 		stack.push("11");
